@@ -1,3 +1,6 @@
+{% extends "todo/main.html" %}
+{% block content %}
+
 <h1>Login</h1>
 
 <form method="POST">
@@ -8,3 +11,6 @@
 <p>
   Don't you have an account? <a href="{% url 'register' %}">Register Here</a>
 </p>
+
+
+{% endblock content %}
