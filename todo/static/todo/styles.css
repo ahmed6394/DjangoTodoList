@@ -75,3 +75,11 @@ a:visited {
 .headline {
   text-align: center;
 }
+.search-box {
+  display: flex;
+  justify-content: end;
+}
+#add-btn {
+  font-weight: bold;
+  margin-top: 20px;
+}

@@ -12,54 +12,53 @@
   {% endif %}
 </div>
 <p>You have <i>{{count}}</i> incomplete task{{count|pluralize}}</p>
-  <hr />
-  <h1 class="headline">My Todo List</h1>
-  <div class="header-line">
-    <a href="{%url 'task-create'%}">Add</a>
+<hr />
+<h1 class="headline">My Todo List</h1>
+<div>
+  <form class="search-box">
+    <input
+      type="text"
+      name="search-area"
+      value="{{search_input}}"
+      placeholder="Type to Search..."
+      class="search_input"
+    />
+    <button><i class="fas fa-search"></i></button>
+  </form>
+</div>
 
-    <form class="search-box">
-      <input
-        type="text"
-        name="search-area"
-        value="{{search_input}}"
-        class=""
-        placeholder="Type to Search..."
-      />
-      <button class=""><i class="fas fa-search"></i></button>
-    </form>
-  </div>
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th></th>
+  </tr>
+  {% for task in tasks %}
+  <tr>
+    <td>{{task.title}}</td>
+    <td>
+      <a href="{% url 'task-update' task.id%}"
+        ><i
+          class="fas fa-sync"
+          style="font-size: 15px; color: #007bff; margin-left: 20px"
+        ></i
+      ></a>
+    </td>
+    <td>
+      <a href="{% url 'task-delete' task.id%}"
+        ><i
+          class="fas fa-trash-alt"
+          style="font-size: 15px; color: red; margin-left: 10px"
+        ></i
+      ></a>
+    </td>
+    <td></td>
+  </tr>
 
-  <table>
-    <tr>
-      <th>Tasks</th>
-      <th></th>
-    </tr>
-    {% for task in tasks %}
-    <tr>
-      <td>{{task.title}}</td>
-      <td>
-        <a href="{% url 'task-update' task.id%}"
-          ><i
-            class="fas fa-sync"
-            style="font-size: 15px; color: #007bff; margin-left: 20px"
-          ></i
-        ></a>
-      </td>
-      <td>
-        <a href="{% url 'task-delete' task.id%}"
-          ><i
-            class="fas fa-trash-alt"
-            style="font-size: 15px; color: red; margin-left: 10px"
-          ></i
-        ></a>
-      </td>
-      <td></td>
-    </tr>
-
-    {%empty%}
-    <h3>No task in list</h3>
-    {% endfor %}
-  </table>
-
-  {% endblock content %}
-</h3>
+  {%empty%}
+  <h3>No task in list</h3>
+  {% endfor %}
+</table>
+<div id="add-btn">
+  <a href="{%url 'task-create'%}">Add</a>
+</div>
+{% endblock content %}
