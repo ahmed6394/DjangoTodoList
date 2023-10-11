@@ -1,44 +1,65 @@
-{% extends "todo/main.html" %}
-{% block content %}
+{% extends "todo/main.html" %} {% block content %}
 
-{% if request.user.is_authenticated %}
-  <p>{{request.user}}</p>
-  <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-  <a href="{% url 'login' %}">Login</a>
+<div class="header-line">
+  {% if request.user.is_authenticated %}
+  <p class="tracking-in-contract user-name">Hello {{request.user}}</p>
+  <a clas="log-link" href="{% url 'logout' %}" title="Logout"
+    ><i class="fas fa-sign-out-alt"></i
+  ></a>
+  {% else %}
+  <a clas="log-link" href="{% url 'login' %}">Login</a>
 
-{% endif %}
+  {% endif %}
+</div>
+<p>You have <i>{{count}}</i> incomplete task{{count|pluralize}}</p>
+  <hr />
+  <h1 class="headline">My Todo List</h1>
+  <div class="header-line">
+    <a href="{%url 'task-create'%}">Add</a>
 
-<hr />
-<h1>My Todo LIST</h1>
-<a href="{%url 'task-create'%}">Add Task</a>
+    <form class="search-box">
+      <input
+        type="text"
+        name="search-area"
+        value="{{search_input}}"
+        class=""
+        placeholder="Type to Search..."
+      />
+      <button class=""><i class="fas fa-search"></i></button>
+    </form>
+  </div>
 
-<form>
-  <input type="text" name="search-area" value="{{search_input}}" />
-  <input type="submit" value="Search" />
-</form>
+  <table>
+    <tr>
+      <th>Tasks</th>
+      <th></th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+      <td>{{task.title}}</td>
+      <td>
+        <a href="{% url 'task-update' task.id%}"
+          ><i
+            class="fas fa-sync"
+            style="font-size: 15px; color: #007bff; margin-left: 20px"
+          ></i
+        ></a>
+      </td>
+      <td>
+        <a href="{% url 'task-delete' task.id%}"
+          ><i
+            class="fas fa-trash-alt"
+            style="font-size: 15px; color: red; margin-left: 10px"
+          ></i
+        ></a>
+      </td>
+      <td></td>
+    </tr>
 
-<table>
-  <tr>
-    <th>Item</th>
-    <th></th>
-  </tr>
-  {% for task in tasks %}
-  <tr>
-    <td>{{task.title}}</td>
-    <td><a href="{% url 'task-update' task.id%}">Update</a></td>
-    <td><a href="{% url 'task-delete' task.id%}">Delete</a></td>
-    <td></td>
-  </tr>
+    {%empty%}
+    <h3>No task in list</h3>
+    {% endfor %}
+  </table>
 
-  {%empty%}
-  <h3>No task in list</h3>
-  {% endfor %}
-</table>
-
-
-
-{% endblock content %}
-
-
-
+  {% endblock content %}
+</h3>
