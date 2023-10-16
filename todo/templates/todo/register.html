@@ -1,13 +1,28 @@
-{% extends "todo/main.html" %}
-{% block content %}
+{% extends "todo/main.html" %} {% block content %}
 
+<div class="form-body">
+  <h1>Register</h1>
 
-<h1>Register</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <label> {{form.usename.label}}</label>
+    {{form.username}}
+    <label> {{form.password1.label}}</label>
+    {{form.password1}}
+    <label> {{form.password2.label}}</label>
+    {{form.password2}}
 
-<form method="POST">
-  {% csrf_token %} {{form.as_p}}
-  <input type="submit" value="Register" />
-</form>
+    <input
+      type="submit"
+      value="Register"
+      class="button"
+      style="margin-top: 10px"
+    />
+  </form>
 
-<p>Already have an account? <a href="{% url 'login' %}">Login Here</a></p>
+  <p>
+    Already have an account?
+    <a class="bold-icon" href="{% url 'login' %}">Login Here</a>
+  </p>
+</div>
 {% endblock content %}

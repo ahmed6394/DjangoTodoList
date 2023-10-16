@@ -1,16 +1,17 @@
-{% extends "todo/main.html" %}
-{% block content %}
+{% extends "todo/main.html" %} {% block content %}
 
-<h1>Login</h1>
+<div class="form-body">
+  <h1>Login</h1>
 
-<form method="POST">
-  {% csrf_token %} {{form.as_p}}
-  <input type="submit" value="Login" />
-</form>
+  <form method="POST">
+    {% csrf_token %} {{form.as_p}}
+    <input type="submit" value="Login" class="button" />
+  </form>
 
-<p>
-  Don't you have an account? <a href="{% url 'register' %}">Register Here</a>
-</p>
-
+  <p>
+    Don't you have an account?
+    <a class="bold-icon" href="{% url 'register' %}">Register Here</a>
+  </p>
+</div>
 
 {% endblock content %}

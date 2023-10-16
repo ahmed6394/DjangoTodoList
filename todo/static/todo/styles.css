@@ -16,16 +16,21 @@ body {
 
 a,
 p {
-  color: #4b5156;
+  color: #252525;
 }
-
+.task-title {
+  font-weight: bold;
+  margin-right: 50px;
+}
 .header-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
 }
-
+.header-bar {
+  padding: 30px;
+}
 .user-name {
   margin-left: 10px;
   font-weight: bold;
@@ -78,8 +83,54 @@ a:visited {
 .search-box {
   display: flex;
   justify-content: end;
+  margin-top: 20px;
 }
+#task-count {
+  margin-left: 20px;
+  margin-top: 0;
+}
+input[type="text"],
+input[type="password"],
+textarea {
+  border: 1px solid #252525;
+  border-radius: 5px;
+  padding: 10px;
+  width: 90%;
+}
+#search-area {
+  width: 30% !important;
+}
+
+.button {
+  border: 1px solid #252525;
+  background-color: #f3f2f2;
+  color: #252525;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 #add-btn {
   font-weight: bold;
   margin-top: 20px;
+  margin-left: 25px;
+}
+
+/* task form */
+.form-body {
+  padding: 30px;
+}
+.task-items-wrapper {
+  margin: 0 50px 0 50px;
+}
+.task-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+.bold-icon {
+  font-weight: bold;
 }
